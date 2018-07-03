@@ -55,7 +55,7 @@ end
 material
 name invisible
 color 0 0 0 0
-texture clear.png
+texture http://images.bzflag.org/pmatous/transparent/Trans-100.png
 end
 
 material
