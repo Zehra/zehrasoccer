@@ -50,6 +50,8 @@ runrestart ()
 	-jitterdrop 3 \
 	-ddd \
 	-loadplugin chathistory,50 \
+	-loadplugin TimeLimit,10,15 \
+	-timemanual \
 	-world '/home/bzflag/soccer/soccer.bzw' \
 	&& echo 'SOCCER BZFLAG Server Started'
 }
