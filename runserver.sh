@@ -43,8 +43,8 @@ runrestart ()
 	-spamwarn 5 \
 	-tkkr 5 \
 	-noTeamKills \
-	-lagwarn 325 \
-	-lagannounce 300 \
+	-lagwarn 400 \
+	-lagannounce 350 \
 	-lagdrop 3 \
 	-jitterwarn 20 \
 	-jitterdrop 3 \
