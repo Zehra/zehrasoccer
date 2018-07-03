@@ -8,20 +8,20 @@ fi
 
 runrestart ()
 {
-	killall -v bzfs >/dev/null 2>&1
+	kill `cat /home/bzflag/soccer/bzfssoccer.pid` >/dev/null 2>&1
 	sleep 1
-	killall -v bzfs >/dev/null 2>&1
+	kill `cat /home/bzflag/soccer/bzfssoccer.pid` >/dev/null 2>&1
 	sleep 1
 
 	/usr/local/bin/bzfs \
-	-port 5155 \
+	-p 5155 \
 	-h -a 0 0 \
 	-passwd "$zehrapass" \
-	-admsg 'This server is operated by ZEHRA'
-        -admsg 'This server is hosted out of a Dallas-based datacenter.' \
+	-srvmsg 'This server is operated by ZEHRA' \
+        -srvmsg 'This server is hosted out of a Dallas-based datacenter.' \
 	-srvmsg 'Authenticated players can /report to admins, /pollban, etc.' \
 	-srvmsg 'ZERO TOLERANCE ON CHEATING! No Cursing! Team-kill is disabled.' \
-	-admsg 'This server is operated by ZEHRA'
+	-admsg 'This server is operated by ZEHRA' \
         -admsg 'This server is hosted out of a Dallas-based datacenter.' \
 	-admsg 'Authenticated players can /report to admins, /pollban, etc.' \
 	-admsg 'ZERO-TOLERANCE CHEATING POLICY!  No profanity!  Team-kill is disabled.' \
@@ -34,7 +34,7 @@ runrestart ()
 	-publickey '' \
 	-reportfile '/home/bzflag/soccer/reportfile.txt' \
 	-badwords '/home/bzflag/soccer/badwords.txt' \
-	-pidfile '/home/bzflag/soccer/bzfs01.pidfile' \
+	-pidfile '/home/bzflag/soccer/bzfssoccer.pid' \
 	-banfile '/home/bzflag/soccer/banfile.txt' \
 	-groupdb '/home/bzflag/soccer/groups.conf' \
 	-userdb '/home/bzflag/soccer/users.conf' \
@@ -56,7 +56,7 @@ runrestart ()
 
 run_with_logging () # send output to syslog
 {
-	runrestart 2>&1 | logger -t bzsoccerserver01 
+	runrestart 2>&1 | logger -t bzfssoccer
 }
 
 run () # daemonize bzfs
