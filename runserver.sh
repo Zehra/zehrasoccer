@@ -16,7 +16,7 @@ runrestart ()
 	/usr/local/bin/bzfs \
 	-publictitle 'BZFlag Soccer is Back!' \
 	-publicaddr 'zehrasoccer.networkspeedy.com' \
-	-publickey '' \
+	-publickey "`cat /home/bzflag/soccer/listkey.txt`" \
 	-p 5155 \
 	-h -a 0 0 \
 	-passwd "$zehrapass" \
