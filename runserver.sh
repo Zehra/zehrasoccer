@@ -14,9 +14,13 @@ runrestart ()
 	sleep 1
 
 	/usr/local/bin/bzfs \
+	-publictitle 'BZFlag Soccer is Back!' \
+	-publicaddr 'zehrasoccer.networkspeedy.com' \
+	-publickey '' \
 	-p 5155 \
 	-h -a 0 0 \
 	-passwd "$zehrapass" \
+	-ts \
 	-srvmsg 'This server is operated by ZEHRA' \
         -srvmsg 'This server is hosted out of a Dallas-based datacenter.' \
 	-srvmsg 'Authenticated players can /report to admins, /pollban, etc.' \
@@ -29,9 +33,6 @@ runrestart ()
 	-filterChat \
 	-filterCallsigns \
 	-maxidle $((60*10)) \
-	-publictitle 'BZFlag Soccer is Back!' \
-	-publicaddr 'zehrasoccer.networkspeedy.com' \
-	-publickey '' \
 	-reportfile '/home/bzflag/soccer/reportfile.txt' \
 	-badwords '/home/bzflag/soccer/badwords.txt' \
 	-pidfile '/home/bzflag/soccer/bzfssoccer.pid' \
@@ -52,14 +53,15 @@ runrestart ()
 	-packetlossdrop 3 \
 	-loadplugin chathistory,49 \
 	-loadplugin TimeLimit,10,15 \
+	-loadplugin logDetail \
 	-timemanual \
 	-world '/home/bzflag/soccer/soccer.bzw' \
-	&& echo 'SOCCER BZFLAG Server Started'
+		&& echo 'SOCCER BZFLAG Server Started'
 }
 
 run_with_logging () # send output to syslog
 {
-	runrestart 2>&1 | logger -t bzfssoccer
+	runrestart 2>&1 | tee -a server.log | logger -t bzfssoccer
 }
 
 run () # daemonize bzfs
